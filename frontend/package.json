@@ -20,9 +20,16 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "dotenv -e .env.dev react-scripts start",
+    "start:dev": "dotenv -e .env.dev react-scripts start",
+    "start:beta": "dotenv -e .env.beta react-scripts start",
+    "start:prod": "dotenv -e .env.prod react-scripts start",
+    "build": "dotenv -e .env.prod react-scripts build",
+    "build:dev": "dotenv -e .env.dev react-scripts build",
+    "build:beta": "dotenv -e .env.beta react-scripts build",
+    "build:prod": "dotenv -e .env.prod react-scripts build",
     "test": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

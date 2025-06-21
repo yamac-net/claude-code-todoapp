@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:todoapp
+    url: jdbc:h2:mem:app_dev
     driver-class-name: org.h2.Driver
     username: sa
     password: 
@@ -12,6 +12,11 @@ spring:
   h2:
     console:
       enabled: true
+
+app:
+  cors:
+    allowed-origins: 
+      - "http://localhost:3000"
 
 server:
   port: 8080
