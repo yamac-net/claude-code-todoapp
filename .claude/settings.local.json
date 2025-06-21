@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(npx create-react-app:*)",
+      "Bash(npm install:*)",
+      "Bash(chmod:*)",
+      "Bash(gradle:*)",
+      "Bash(curl:*)",
+      "Bash(unzip:*)",
+      "Bash(./gradle-8.14.2/bin/gradle:*)",
+      "Bash(npm run build:*)",
+      "Bash(rm:*)",
+      "Bash(./gradlew:*)",
+      "Bash(git init:*)",
+      "Bash(git branch:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": []
+  }
+}
