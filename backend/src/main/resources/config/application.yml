@@ -1,0 +1,13 @@
+# Common configuration for all environments
+spring:
+  profiles:
+    active: dev
+
+# Default server configuration
+server:
+  port: 8080
+
+# Application specific configuration
+app:
+  name: "Todo Application"
+  version: "1.0.0"
