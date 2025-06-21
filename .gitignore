@@ -24,3 +24,7 @@ frontend/yarn-error.log*
 # General
 .DS_Store
 *.log
+
+# Development tools
+.claude/settings.local.json
+.vscode/
