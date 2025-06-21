@@ -71,6 +71,6 @@ Uses H2 in-memory database. Data will be reset when the application restarts.
 H2 Console is accessible at http://localhost:8080/h2-console
 
 ### Connection Details
-- JDBC URL: `jdbc:h2:mem:todoapp`
+- JDBC URL: `jdbc:h2:mem:app_dev`
 - User Name: `sa`
 - Password: (leave blank)
