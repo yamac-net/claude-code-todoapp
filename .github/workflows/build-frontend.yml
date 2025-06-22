@@ -1,5 +1,5 @@
 name: Build Frontend
-run-name: "Build Frontend : ${{ github.event.head_commit.message }}"
+run-name: "${{ github.workflow }} : ${{ github.event_name == 'pull_request' && github.event.pull_request.title || github.event.head_commit.message || 'Manual run' }}"
 
 on:
   workflow_dispatch:
