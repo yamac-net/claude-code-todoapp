@@ -15,7 +15,7 @@ on:
       - v*
 
 env:
-  DOCKER_IMAGE_NAME: yamac-net-claude-code-todoapp/backend
+  DOCKER_IMAGE_NAME: claude-code-todoapp/backend
 
 jobs:
   build:
