@@ -1,0 +1,83 @@
+name: Build Frontend
+run-name: "Build Frontend : ${{ github.event.head_commit.message }}"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+      - feature/*
+    tags:
+      - v*
+    paths:
+      - frontend/**
+      - .github/workflows/build-frontend.yml
+
+env:
+  DOCKER_IMAGE_NAME: yamac-net-claude-code-todoapp/frontend
+
+jobs:
+  build:
+    runs-on: arc-runner-set
+    if: startsWith(github.ref, 'refs/heads/develop') || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/tags/')
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Environment
+        run: |
+          echo "GIT_TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+      - name: Login to Docker Registry Mirror
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ vars.REGISTRY_MIRROR_HOST }}
+          username: ${{ vars.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Login to Docker Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ vars.REGISTRY_HOST }}
+          username: ${{ vars.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver: docker
+
+      - name: Docker Build and Push on develop
+        if: startsWith(github.ref, 'refs/heads/develop')
+        uses: docker/build-push-action@v6
+        with:
+          network: host
+          context: frontend
+          target: package-app-beta
+          push: true
+          tags: |
+            ${{ vars.REGISTRY_HOST }}/${{ env.DOCKER_IMAGE_NAME }}:develop
+
+      - name: Docker Build and Push on feature/*
+        if: startsWith(github.ref, 'refs/heads/feature/')
+        uses: docker/build-push-action@v6
+        with:
+          network: host
+          context: frontend
+          target: package-app-beta
+          push: true
+          tags: |
+            ${{ vars.REGISTRY_HOST }}/${{ env.DOCKER_IMAGE_NAME }}:feature
+
+      - name: Docker Build and Push on tags
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: docker/build-push-action@v6
+        with:
+          network: host
+          context: frontend
+          target: package-app-prod
+          push: true
+          tags: |
+            ${{ vars.REGISTRY_HOST }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+            ${{ vars.REGISTRY_HOST }}/${{ env.DOCKER_IMAGE_NAME }}:${{ env.GIT_TAG }}
