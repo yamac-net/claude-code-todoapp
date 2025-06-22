@@ -1,5 +1,5 @@
 name: Notification
-run-name: "Notification : ${{ env.COMMIT_FIRST_LINE }}"
+run-name: "Notification : ${{ github.event.workflow_run.display_title || 'Workflow completed' }}"
 
 on:
   workflow_run:
