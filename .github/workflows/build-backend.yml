@@ -9,6 +9,8 @@ on:
       - backend/**
       - .github/workflows/build-backend.yml
   push:
+    branches:
+      - develop
     tags:
       - v*
 
@@ -56,6 +58,17 @@ jobs:
           push: true
           tags: |
             ${{ vars.REGISTRY_HOST }}/${{ env.DOCKER_IMAGE_NAME }}:pr-${{ github.event.number }}
+
+      - name: Docker Build and Push on develop
+        if: github.ref == 'refs/heads/develop'
+        uses: docker/build-push-action@v6
+        with:
+          network: host
+          context: backend
+          target: package-app
+          push: true
+          tags: |
+            ${{ vars.REGISTRY_HOST }}/${{ env.DOCKER_IMAGE_NAME }}:develop
 
       - name: Docker Build and Push on tags
         if: startsWith(github.ref, 'refs/tags/')
