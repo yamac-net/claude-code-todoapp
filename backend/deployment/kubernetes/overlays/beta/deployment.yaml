@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yamac-net-claude-code-todoapp-backend
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: yamac-net-claude-code-todoapp-backend
+          image: cr.yamac.net/yamac-net-claude-code-todoapp/backend:develop
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: 100Mi
+            limits:
+              memory: 300Mi

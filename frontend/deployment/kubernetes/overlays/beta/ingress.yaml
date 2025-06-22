@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: yamac-net-claude-code-todoapp-frontend
+spec:
+  tls:
+    - hosts:
+        - "*.yamac-beta.net"
+      secretName: yamac-beta-net-tls
+  rules:
+    - host: claude-code-todoapp.yamac-beta.net
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: yamac-net-claude-code-todoapp-frontend
+                port:
+                  number: 80
