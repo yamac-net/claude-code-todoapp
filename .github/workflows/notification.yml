@@ -1,5 +1,5 @@
 name: Notification
-run-name: "Notification : ${{ toJSON(github.event.workflow_run.head_commit.message) }}"
+run-name: "Notification : ${{ env.COMMIT_FIRST_LINE }}"
 
 on:
   workflow_run:
@@ -20,6 +20,7 @@ jobs:
       - name: Setup Environment
         run: |
           echo "SHORT_SHA=${GITHUB_SHA::8}" >> $GITHUB_ENV
+          echo "COMMIT_FIRST_LINE=$(echo '${{ github.event.workflow_run.head_commit.message }}' | head -n1)" >> $GITHUB_ENV
 
       - name: Slack Notification
         uses: slackapi/slack-github-action@v2.1.0
@@ -30,14 +31,14 @@ jobs:
             channel: "${{ env.SLACK_CHANNEL_ID }}"
             username: "${{ env.SLACK_USERNAME }}"
             icon_url: "${{ env.SLACK_ICON_URL }}"
-            text: "GitHub Actions build <${{ github.event.workflow_run.html_url }}|#${{ github.event.workflow_run.run_number }}> for `<${{ github.server_url }}/${{ github.repository }}/tree/${{ toJSON(github.ref_name) }}|${{ toJSON(github.ref_name) }}>` triggered by <${{ github.server_url }}/${{ toJSON(github.actor) }}?email_source=slack|${{ toJSON(github.actor) }}>"
+            text: "GitHub Actions build <${{ github.event.workflow_run.html_url }}|#${{ github.event.workflow_run.run_number }}> for `<${{ github.server_url }}/${{ github.repository }}/tree/${{ github.ref_name }}|${{ github.ref_name }}>` triggered by <${{ github.server_url }}/${{ github.actor }}?email_source=slack|${{ github.actor }}>"
             attachments:
             - color: "${{ github.event.workflow_run.conclusion == 'success' && '#2EB886' || '#A30100' }}"
               blocks:
               - type: "section"
                 text:
                   type: "mrkdwn"
-                  text: "`<${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|${{ env.SHORT_SHA }}>` - ${{ toJSON(github.event.workflow_run.head_commit.message) }}"
+                  text: "`<${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|${{ env.SHORT_SHA }}>` - ${{ env.COMMIT_FIRST_LINE }}"
               - type: "section"
                 text:
                   type: "mrkdwn"
