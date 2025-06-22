@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: yamac-net-claude-code-todoapp-frontend
+  name: claude-code-todoapp-frontend
 spec:
   selector:
     matchLabels:
-      app: yamac-net-claude-code-todoapp-frontend
+      app: claude-code-todoapp-frontend
   template:
     metadata:
       labels:
-        app: yamac-net-claude-code-todoapp-frontend
+        app: claude-code-todoapp-frontend
     spec:
       serviceAccountName: deployer
       containers:
-        - name: yamac-net-claude-code-todoapp-frontend
+        - name: claude-code-todoapp-frontend
           ports:
             - containerPort: 80
           envFrom:
             - configMapRef:
-                name: yamac-net-claude-code-todoapp-frontend
+                name: claude-code-todoapp-frontend

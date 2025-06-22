@@ -4,7 +4,7 @@ kind: Kustomization
 labels:
   - includeSelectors: true
     pairs:
-      app: yamac-net-claude-code-todoapp-backend
+      app: claude-code-todoapp-backend
 
 resources:
   - configmap.yaml
