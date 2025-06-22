@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: yamac-net-claude-code-todoapp-frontend
+  name: claude-code-todoapp-frontend
 spec:
   replicas: 1
   template:
     spec:
       containers:
-        - name: yamac-net-claude-code-todoapp-frontend
-          image: cr.yamac.net/yamac-net-claude-code-todoapp/frontend:develop
+        - name: claude-code-todoapp-frontend
+          image: cr.yamac.net/claude-code-todoapp/frontend:develop
           imagePullPolicy: Always
           resources:
             requests:

@@ -1,4 +1,4 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: yamac-net-claude-code-todoapp-frontend
+  name: claude-code-todoapp-frontend
