@@ -1,5 +1,5 @@
 name: Notification
-run-name: "Notification : ${{ github.event.workflow_run.head_commit.message }}"
+run-name: "Notification : ${{ toJSON(github.event.workflow_run.head_commit.message) }}"
 
 on:
   workflow_run:
@@ -30,7 +30,7 @@ jobs:
             channel: "${{ env.SLACK_CHANNEL_ID }}"
             username: "${{ env.SLACK_USERNAME }}"
             icon_url: "${{ env.SLACK_ICON_URL }}"
-            text: "GitHub Actions build <${{ github.event.workflow_run.html_url }}|#${{ github.event.workflow_run.run_number }}> for `<${{ github.server_url }}/${{ github.repository }}/tree/${{ github.ref_name }}|${{ github.ref_name }}>` triggered by <${{ github.server_url }}/${{ github.actor }}?email_source=slack|${{ github.actor }}>"
+            text: "GitHub Actions build <${{ github.event.workflow_run.html_url }}|#${{ github.event.workflow_run.run_number }}> for `<${{ github.server_url }}/${{ github.repository }}/tree/${{ toJSON(github.ref_name) }}|${{ toJSON(github.ref_name) }}>` triggered by <${{ github.server_url }}/${{ toJSON(github.actor) }}?email_source=slack|${{ toJSON(github.actor) }}>"
             attachments:
             - color: "${{ github.event.workflow_run.conclusion == 'success' && '#2EB886' || '#A30100' }}"
               blocks:
