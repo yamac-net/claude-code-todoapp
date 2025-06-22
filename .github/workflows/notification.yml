@@ -37,7 +37,7 @@ jobs:
               - type: "section"
                 text:
                   type: "mrkdwn"
-                  text: "`<${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|${{ env.SHORT_SHA }}>` - ${{ github.event.workflow_run.head_commit.message }}"
+                  text: "`<${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}|${{ env.SHORT_SHA }}>` - ${{ toJSON(github.event.workflow_run.head_commit.message) }}"
               - type: "section"
                 text:
                   type: "mrkdwn"
