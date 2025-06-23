@@ -11,4 +11,4 @@ RUN chmod +x ./gradlew && ./gradlew clean build
 FROM cr-mirror.yamac.net/library/eclipse-temurin:21-jre-alpine AS package-app
 WORKDIR /App
 COPY --from=build /backend/build/libs/backend.jar /App
-ENTRYPOINT [ "java", "-jar", "backend.jar" ]
+ENTRYPOINT [ "java", "-XX:+PrintCommandLineFlags", "-XX:+UseContainerSupport", "-XX:MaxRAMPercentage=75.0", "-jar", "backend.jar" ]
