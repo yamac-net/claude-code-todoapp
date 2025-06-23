@@ -19,3 +19,5 @@ spec:
           envFrom:
             - configMapRef:
                 name: claude-code-todoapp-backend
+            - secretRef:
+                name: claude-code-todoapp-backend
