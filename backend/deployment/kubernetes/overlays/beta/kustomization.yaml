@@ -5,6 +5,7 @@ namespace: app-beta
 
 resources:
   - ./../../base
+  - sealed-secret.yaml
 
 patches:
   - path: configmap.yaml
