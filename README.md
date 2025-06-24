@@ -1,5 +1,8 @@
 # TODO App
 
+[![Backend Build](https://github.com/yamac-net/claude-code-todoapp/actions/workflows/backend-build.yml/badge.svg)](https://github.com/yamac-net/claude-code-todoapp/actions/workflows/backend-build.yml)
+[![Frontend Build](https://github.com/yamac-net/claude-code-todoapp/actions/workflows/frontend-build.yml/badge.svg)](https://github.com/yamac-net/claude-code-todoapp/actions/workflows/frontend-build.yml)
+
 A full-stack TODO application with separated frontend and backend architecture.
 
 ## Architecture
