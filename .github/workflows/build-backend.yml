@@ -59,8 +59,11 @@ jobs:
       - name: Inject Build Cache
         uses: reproducible-containers/buildkit-cache-dance@v3.3.0
         with:
-          cache-source: gradle-cache
-          cache-target: /root/.gradle
+          cache-map: |
+            {
+              "gradle-cache": "/root/.gradle"
+            }
+          dockerfile: backend/Dockerfile
 
       - name: Docker Build and Push on Pull Request
         if: github.event_name == 'pull_request'
