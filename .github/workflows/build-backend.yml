@@ -57,7 +57,7 @@ jobs:
             ${{ runner.os }}-gradle-cache
 
       - name: Inject Build Cache
-        uses: reproducible-containers/buildkit-cache-dance@v2.1.4
+        uses: reproducible-containers/buildkit-cache-dance@v3.3.0
         with:
           cache-source: gradle-cache
           cache-target: /root/.gradle
