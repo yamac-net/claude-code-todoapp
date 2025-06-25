@@ -1,0 +1,49 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "saturday"
+      time: "10:00"
+      timezone: "Asia/Tokyo"
+    target-branch: "develop"
+    labels:
+      - "dependencies"
+      - "github-actions"
+
+  - package-ecosystem: "gradle"
+    directory: "/backend"
+    schedule:
+      interval: "weekly"
+      day: "saturday"
+      time: "10:00"
+      timezone: "Asia/Tokyo"
+    target-branch: "develop"
+    labels:
+      - "dependencies"
+      - "gradle"
+
+  - package-ecosystem: "npm"
+    directory: "/frontend"
+    schedule:
+      interval: "weekly"
+      day: "saturday"
+      time: "10:00"
+      timezone: "Asia/Tokyo"
+    target-branch: "develop"
+    labels:
+      - "dependencies"
+      - "npm"
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "saturday"
+      time: "10:00"
+      timezone: "Asia/Tokyo"
+    target-branch: "develop"
+    labels:
+      - "dependencies"
+      - "docker"
